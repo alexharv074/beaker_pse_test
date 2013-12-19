@@ -1,0 +1,12 @@
+#/etc/puppet/manifests/classes/install_configure_enginex.pp
+package { 'nginx':
+    ensure =>"installed,
+}
+file { '/var/www/html/index.html':
+	source => 'https://github.com/puppetlabs/exercise-webpage/blob/master/index.html',
+	owner => 'nginx',
+	group => 'nginx',
+	mode => '640',
+	ensure => present,
+}
+

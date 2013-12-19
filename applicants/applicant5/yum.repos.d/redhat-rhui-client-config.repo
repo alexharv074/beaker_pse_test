@@ -1,0 +1,10 @@
+[rhui-us-west-2-client-config-server-6]
+name=Red Hat Update Infrastructure 2.0 Client Configuration Server 6
+mirrorlist=https://rhui2-cds01.us-west-2.aws.ce.redhat.com/pulp/mirror/rhui-client-config/rhel/server/6/$basearch/os
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-auxiliary
+sslverify=1
+sslcacert=/etc/pki/entitlement/cdn.redhat.com-chain.crt
+sslclientcert=/etc/pki/entitlement/product/rhui-client-config-server-6.crt
+sslclientkey=/etc/pki/entitlement/rhui-client-config-server-6.key

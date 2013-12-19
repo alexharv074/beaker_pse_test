@@ -1,0 +1,16 @@
+
+1) get nginx.pp.
+
+2) place it.
+
+3) fire up two servers, http and client.
+
+4) on http, place nginx.pp.
+
+5) on http, puppet apply nginx.pp.
+
+6) on client, wget http://file.
+
+7) on client, check file checksum.
+
+Return success if checksum matches.

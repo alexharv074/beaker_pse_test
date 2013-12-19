@@ -1,0 +1,5 @@
+[puppetdeps]
+name=puppetdeps
+baseurl=http://yum.puppetlabs.com/el/6Server/dependencies/x86_64/
+enabled=1
+gpgcheck=1

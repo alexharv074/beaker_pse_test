@@ -1,0 +1,5 @@
+[puppet]
+name=puppet
+baseurl=http://yum.puppetlabs.com/el/6Server/devel/x86_64/
+enabled=1
+gpgcheck=1
