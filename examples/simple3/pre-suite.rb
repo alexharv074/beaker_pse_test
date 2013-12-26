@@ -1,5 +1,5 @@
 test_name 'Install Puppet Enterprise' do
-  host_os_tarball_dir = ENV['HOME']
+  host_os_tarball_dir = '/var/tmp'
   pe_tarball_file = 'puppet-enterprise-3.1.0-el-6-x86_64.tar.gz'
   pe_tarball_dir = pe_tarball_file.sub('.tar.gz', '')
   answers = <<EOF
