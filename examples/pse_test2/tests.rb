@@ -6,7 +6,7 @@ test_name 'Apply PSE solution' do
 
   step 'Copy nginx module to modulepath on master'
   scp_to master, nginx_tar_full_path, '/root'
-  on master, "cd /etc/puppetlabs/puppet/modules && tar -xf /root/#{nginx_tar_file_name}"
+  on master, "cd /etc/puppetlabs/puppet/modules; tar -xf /root/#{nginx_tar_file_name}"
 
   step 'Classify default node with nginx on master'
   manifest = <<EOF
@@ -19,12 +19,12 @@ EOF
   step 'Run the puppet agent to apply nginx on client'
   on nginx, puppet_agent('-t'), :acceptable_exit_codes => 0
 
-  step 'Get a file from nginx server on client'
-  on nginx, 'curl -O http://localhost:8080/ -o /tmp/index.html'
+  step 'Get a file from nginx server on the master'
+  on master, 'cd /tmp; wget http://client:8080/'
 
   step 'Examine checksum of the received file'
-  on nginx, 'cksum /tmp/index.html' do
-    actual_cksum = stdout.sub('^(\d+) .*', match[1])
+  on master, 'cksum /tmp/index.html' do
+    actual_cksum = stdout.chomp.sub(/^(\d+) .*/, '\1')
     assert_equal expected_cksum, actual_cksum, "File /tmp/index.html doesn't have the expected cksum"
   end
 

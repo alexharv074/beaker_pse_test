@@ -47,3 +47,16 @@ examples/simple3:
 
   3)  Run:
   $ beaker --debug --hosts hosts.cfg --pre-suite pre-suite.rb --tests tests.rb
+
+examples/pse_test1:
+
+  This example applies the PSE test solution on a single host that will run both the Puppet Master
+  and nginx server.  The solution is modified to use port 8082 so as not to conflict with the
+  Puppet Master's use of port 8080.
+
+  To run this example:
+
+  1)  Change to the examples/pse_test1 directory
+
+  2)  Run:
+  $ beaker --hosts hosts.cfg --pre-suite pre-suite.rb --tests tests.rb
