@@ -1,4 +1,9 @@
 class nginx {
+  File {
+    owner => 'root',
+    group => 'root',
+  }
+
   file { '/etc/yum.repos.d/nginx.repo':
     ensure => file,
     source => 'puppet:///modules/nginx/nginx.repo',
@@ -24,6 +29,7 @@ class nginx {
   file { ['/etc/nginx/html',
           '/etc/nginx/logs']:
     ensure => directory,
+    require => Package['nginx'],
   }
 
   file { '/etc/nginx/html/index.html':
@@ -35,6 +41,8 @@ class nginx {
   service { 'nginx':
     ensure    => running,
     enable    => true,
-    subscribe => [File['/etc/nginx/nginx.conf'], File['/etc/nginx/conf.d/default.conf'], File['/etc/nginx/html/index.html']],
+    subscribe => [File['/etc/nginx/nginx.conf'],
+                  File['/etc/nginx/conf.d/default.conf'],
+                  File['/etc/nginx/html/index.html']],
   }
 }
