@@ -14,9 +14,29 @@ examples/simple1:
 
   To run this example:
 
-  1)  Change to the examples/simple1 directory.
+  1)  Make sure your Beaker is patched as follows to allow the PE tarball to be fetched via
+  HTTPS:
 
-  2)  Run:
+--- a/Library/Ruby/Gems/2.0.0/gems/beaker-1.0.1//lib/beaker/dsl/install_utils.rb.orig
++++ b/Library/Ruby/Gems/2.0.0/gems/beaker-1.0.1//lib/beaker/dsl/install_utils.rb
+@@ -158,9 +158,12 @@ module Beaker
+       # @api private
+       def link_exists?(link)
+         require "net/http"
++        require "net/https"
+         require "open-uri"
+         url = URI.parse(link)
+-        Net::HTTP.start(url.host, url.port) do |http|
++        http = Net::HTTP.new(url.host, url.port)
++        http.use_ssl = (url.scheme == 'https')
++        http.start do |http|
+           return http.head(url.request_uri).code == "200"
+         end
+       end
+
+  2)  Change to the examples/simple1 directory.
+
+  3)  Run:
   $ beaker --debug --hosts hosts.cfg --pre-suite pre-suite.rb --tests tests.rb
 
 examples/simple2:
