@@ -1,9 +1,20 @@
-Contents of this repository:
+About the examples.
+
+To run these examples it is assumed that you have firstly installed vagrant, beaker etc
+according to documentation at https://confluence.puppetlabs.com/display/DEL/Beaker+101.
 
 examples/beaker101:
 
   This directory contains the example documented at:
   https://confluence.puppetlabs.com/display/DEL/Beaker+101
+
+  1)  Change to the examples/beaker101 directory
+
+  2)  Export the following variable:
+  $ export pe_dist_dir=http://neptune.puppetlabs.lan/3.0/ci-ready/
+
+  3)  Run:
+  $ beaker --pre-suite pre-suite.rb --tests tests.rb
 
 examples/simple1:
 
