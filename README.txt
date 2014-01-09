@@ -87,7 +87,9 @@ examples/pse_test1:
 
   To run this example:
 
-  1)  Change to the examples/pse_test1 directory
+  1)  Make sure puppet-enterprise-3.1.0-el-6-x86_64.tar.gz is in /var/tmp.
 
-  2)  Run:
+  2)  Change to the examples/pse_test1 directory
+
+  3)  Run:
   $ beaker --hosts hosts.cfg --pre-suite pre-suite.rb --tests tests.rb
