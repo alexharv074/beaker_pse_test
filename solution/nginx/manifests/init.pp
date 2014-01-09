@@ -4,14 +4,13 @@ class nginx {
     group => 'root',
   }
 
-  file { '/etc/yum.repos.d/nginx.repo':
-    ensure => file,
-    source => 'puppet:///modules/nginx/nginx.repo',
+  yumrepo { 'nginx repo':
+    baseurl => 'http://nginx.org/packages/centos/$releasever/$basearch/',
   }
 
   package { 'nginx':
     ensure  => installed,
-    require => File['/etc/yum.repos.d/nginx.repo'],
+    require => Yumrepo['nginx repo'],
   }
 
   file { '/etc/nginx/nginx.conf':
